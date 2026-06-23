@@ -24,6 +24,7 @@ _ENV_MAP = {
     "requestTrial": "WEBEST_REQUEST_TRIAL",
     "fetchCredentials": "WEBEST_FETCH_CREDENTIALS",
     "iboPlayerCookie": "WEBEST_IBOPLAYER_COOKIE",
+    "iboPlayerPlaylistUrlId": "WEBEST_IBOPLAYER_PLAYLIST_URL_ID",
     "iboPlayerPlaylistName": "WEBEST_IBOPLAYER_PLAYLIST_NAME",
 }
 

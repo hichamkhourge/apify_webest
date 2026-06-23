@@ -110,6 +110,13 @@
             "editor": "textfield",
             "isSecret": true
         },
+        "iboPlayerPlaylistUrlId": {
+            "title": "IBO Player playlist URL ID",
+            "type": "string",
+            "description": "current_playlist_url_id for the IBO Player savePlaylist call.",
+            "editor": "textfield",
+            "default": "6a2fdb66d1bd9a61f3b466f1"
+        },
         "iboPlayerPlaylistName": {
             "title": "IBO Player playlist name",
             "type": "string",
