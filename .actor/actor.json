@@ -1,0 +1,16 @@
+{
+    "actorSpecification": 1,
+    "name": "webestiptv-trial",
+    "title": "WEBESTIPTV Trial Automation",
+    "description": "Automates webestiptv.com account registration + OTP verification + free-trial activation and extracts the Xtream/IPTV credentials.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "python-selenium"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    }
+}

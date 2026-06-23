@@ -1,0 +1,25 @@
+{
+    "actorSpecification": 1,
+    "views": {
+        "overview": {
+            "title": "Trial credentials",
+            "transformation": {
+                "fields": ["status", "email", "username", "password", "host", "samsung_dns", "m3u_url", "ibo_saved", "error"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "status": { "label": "Status" },
+                    "email": { "label": "Inbox" },
+                    "username": { "label": "Username" },
+                    "password": { "label": "Password" },
+                    "host": { "label": "Server" },
+                    "samsung_dns": { "label": "Samsung DNS" },
+                    "m3u_url": { "label": "M3U URL" },
+                    "ibo_saved": { "label": "IBO Saved" },
+                    "error": { "label": "Error" }
+                }
+            }
+        }
+    }
+}

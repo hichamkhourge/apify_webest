@@ -1,0 +1,122 @@
+{
+    "title": "WEBESTIPTV Trial Automation",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "userId": {
+            "title": "User ID",
+            "type": "integer",
+            "description": "Optional Laravel/backend account ID. Included in the webhook callback payload.",
+            "editor": "number"
+        },
+        "callbackUrl": {
+            "title": "Callback (webhook) URL",
+            "type": "string",
+            "description": "Optional URL that receives a JSON POST with the result (success or failure).",
+            "editor": "textfield"
+        },
+        "webhookAuthToken": {
+            "title": "Webhook auth token",
+            "type": "string",
+            "description": "Optional Bearer token sent in the Authorization header of the webhook callback.",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "baseUrl": {
+            "title": "WEBESTIPTV base URL",
+            "type": "string",
+            "description": "Base site URL.",
+            "editor": "textfield",
+            "default": "https://webestiptv.com"
+        },
+        "emailBackend": {
+            "title": "Temporary email backend",
+            "type": "string",
+            "description": "Which disposable-email API to use for receiving the OTP code.",
+            "editor": "select",
+            "default": "tempmaillol",
+            "enum": ["tempmaillol", "mailtm"],
+            "enumTitles": ["tempmail.lol (default)", "mail.tm (fallback)"]
+        },
+        "useProxy": {
+            "title": "Use free proxies",
+            "type": "boolean",
+            "description": "Attempt 1 uses the host's public IP; remaining attempts rotate through free public proxies.",
+            "editor": "checkbox",
+            "default": true
+        },
+        "proxyProtocol": {
+            "title": "Proxy protocol",
+            "type": "string",
+            "description": "Protocol of the free proxies to use.",
+            "editor": "select",
+            "default": "http",
+            "enum": ["http", "socks4", "socks5"],
+            "enumTitles": ["HTTP", "SOCKS4", "SOCKS5"]
+        },
+        "proxyMaxTries": {
+            "title": "Max proxies to test",
+            "type": "integer",
+            "description": "How many free proxies to validate before giving up on an attempt.",
+            "editor": "number",
+            "default": 60
+        },
+        "maxAttempts": {
+            "title": "Max registration attempts",
+            "type": "integer",
+            "description": "Number of fresh-account attempts (each on a different IP) before failing.",
+            "editor": "number",
+            "default": 5
+        },
+        "otpWaitSeconds": {
+            "title": "Max OTP wait (seconds)",
+            "type": "integer",
+            "description": "How long to poll the inbox for the verification email before timing out.",
+            "editor": "number",
+            "default": 180
+        },
+        "credentialsWaitSeconds": {
+            "title": "Credentials provisioning wait (seconds)",
+            "type": "integer",
+            "description": "How long to wait for the trial line to provision and credentials to appear.",
+            "editor": "number",
+            "default": 120
+        },
+        "requestTrial": {
+            "title": "Request free trial",
+            "type": "boolean",
+            "description": "Click the 'Request Trial' button after registering.",
+            "editor": "checkbox",
+            "default": true
+        },
+        "fetchCredentials": {
+            "title": "Fetch IPTV credentials",
+            "type": "boolean",
+            "description": "Extract the Xtream credentials from the credentials page after activation.",
+            "editor": "checkbox",
+            "default": true
+        },
+        "iboPlayerEnabled": {
+            "title": "Save to IBO Player",
+            "type": "boolean",
+            "description": "If enabled, the extracted credentials are pushed to IBO Player via its API.",
+            "editor": "checkbox",
+            "default": false
+        },
+        "iboPlayerCookie": {
+            "title": "IBO Player cookie",
+            "type": "string",
+            "description": "Authenticated Cookie header value for iboplayer.com (required when IBO Player is enabled).",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "iboPlayerPlaylistName": {
+            "title": "IBO Player playlist name",
+            "type": "string",
+            "description": "Display name for the saved playlist.",
+            "editor": "textfield",
+            "default": "WEBESTIPTV"
+        }
+    },
+    "required": []
+}
