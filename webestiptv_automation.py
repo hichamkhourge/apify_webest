@@ -161,8 +161,12 @@ CREDENTIALS_POLL_SECONDS = int(os.getenv("WEBEST_CREDENTIALS_POLL_SECONDS", "15"
 
 # Push the extracted Xtream credentials into IBO Player (reuses iptvv's save_to_iboplayer).
 WEBEST_IBOPLAYER_ENABLED = os.getenv("WEBEST_IBOPLAYER_ENABLED", "True").lower() == "true"
-# Shared IBO Player session cookie (falls back to the repo-wide IBOPLAYER_COOKIE).
+# Legacy IBO Player session cookie (no longer used for auth).
 WEBEST_IBOPLAYER_COOKIE = os.getenv("WEBEST_IBOPLAYER_COOKIE") or os.getenv("IBOPLAYER_COOKIE", "")
+# Device-login credentials (bearer-token auth, replacing the cookie). Fall back to
+# the shared IBOPLAYER_* device identity when the WEBEST-specific vars are unset.
+WEBEST_IBOPLAYER_MAC_ADDRESS = os.getenv("WEBEST_IBOPLAYER_MAC_ADDRESS") or os.getenv("IBOPLAYER_MAC_ADDRESS", "")
+WEBEST_IBOPLAYER_DEVICE_KEY = os.getenv("WEBEST_IBOPLAYER_DEVICE_KEY") or os.getenv("IBOPLAYER_DEVICE_KEY", "")
 WEBEST_IBOPLAYER_PLAYLIST_URL_ID = os.getenv(
     "WEBEST_IBOPLAYER_PLAYLIST_URL_ID", "6a2fdb66d1bd9a61f3b466f1"
 )
@@ -941,15 +945,17 @@ def save_credentials_to_ibo(creds):
     if not (creds and creds.get("host") and creds.get("username") and creds.get("password")):
         print("[!] IBO Player save skipped: incomplete credentials")
         return False
-    if not WEBEST_IBOPLAYER_COOKIE:
-        print("[!] IBO Player save skipped: no IBOPLAYER_COOKIE configured")
+    if not WEBEST_IBOPLAYER_MAC_ADDRESS or not WEBEST_IBOPLAYER_DEVICE_KEY:
+        print("[!] IBO Player save skipped: WEBEST_IBOPLAYER_MAC_ADDRESS / "
+              "WEBEST_IBOPLAYER_DEVICE_KEY not configured")
         return False
 
     import iptvvcanada_automation as _iptvv
 
-    # Point the shared saver at the WEBEST playlist slot.
+    # Point the shared saver at the WEBEST playlist slot and device identity.
     _iptvv.IPTVV_IBOPLAYER_ENABLED = True
-    _iptvv.IPTVV_IBOPLAYER_COOKIE = WEBEST_IBOPLAYER_COOKIE
+    _iptvv.IPTVV_IBOPLAYER_MAC_ADDRESS = WEBEST_IBOPLAYER_MAC_ADDRESS
+    _iptvv.IPTVV_IBOPLAYER_DEVICE_KEY = WEBEST_IBOPLAYER_DEVICE_KEY
     _iptvv.IPTVV_IBOPLAYER_PLAYLIST_URL_ID = WEBEST_IBOPLAYER_PLAYLIST_URL_ID
     _iptvv.IPTVV_IBOPLAYER_PLAYLIST_NAME = WEBEST_IBOPLAYER_PLAYLIST_NAME
 
