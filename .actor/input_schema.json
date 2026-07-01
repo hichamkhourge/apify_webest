@@ -103,6 +103,13 @@
             "editor": "checkbox",
             "default": false
         },
+        "twoCaptchaApiKey": {
+            "title": "2Captcha API key",
+            "type": "string",
+            "description": "API key for the 2captcha service, used to solve the SVG captcha on IBO Player device login (required when IBO Player is enabled).",
+            "editor": "textfield",
+            "isSecret": true
+        },
         "iboPlayerCookie": {
             "title": "IBO Player cookie (legacy)",
             "type": "string",

@@ -13,6 +13,7 @@ from apify import Actor
 # Maps Actor input keys -> the env vars webestiptv_automation reads at import.
 # Only non-empty values are applied so the module's own defaults still win.
 _ENV_MAP = {
+    "twoCaptchaApiKey": "TWOCAPTCHA_API_KEY",
     "baseUrl": "WEBEST_BASE_URL",
     "emailBackend": "WEBEST_EMAIL_BACKEND",
     "maxAttempts": "WEBEST_MAX_ATTEMPTS",
